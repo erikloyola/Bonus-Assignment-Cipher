@@ -49,7 +49,6 @@ def rail_fence_decode(string, key):
         return string
 
     pattern = [['' for _ in range(len(string))] for _ in range(key)]
-    idx = 0
     row = 0
     direction = 1
     for col in range(len(string)):
@@ -144,11 +143,11 @@ def vigenere_decode(string, phrase):
         Vigenere algorithm
     """
 
-    filtered_phrase = filter_string(phrase)
+    ciphertext = filter_string(ciphertext)
+    passphrase = filter_string(passphrase)
     decoded = ''
-    for i, char in enumerate(string):
-        p_char = filtered_phrase[i % len(filtered_phrase)]
-        decoded += decode_character(p_char, char)
+    for i in range(len(ciphertext)):
+        decoded += decode_character(passphrase[i % len(passphrase)], ciphertext[i])
     return decoded
 
 
