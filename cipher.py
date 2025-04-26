@@ -143,11 +143,11 @@ def vigenere_decode(string, phrase):
         Vigenere algorithm
     """
 
-    ciphertext = filter_string(ciphertext)
-    passphrase = filter_string(passphrase)
+    filtered_phrase = filter_string(phrase)
     decoded = ''
-    for i in range(len(ciphertext)):
-        decoded += decode_character(passphrase[i % len(passphrase)], ciphertext[i])
+    for i, char in enumerate(string):
+        p_char = filtered_phrase[i % len(filtered_phrase)]
+        decoded += decode_character(p_char, char)
     return decoded
 
 
